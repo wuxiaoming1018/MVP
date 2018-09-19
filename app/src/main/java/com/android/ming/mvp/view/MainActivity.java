@@ -34,16 +34,16 @@ public class MainActivity extends BaseActivity implements MvpView {
     }
 
     public void getData(View view) {
-        presenter.getData("normal");
+        presenter.showData("normal");
     }
 
     public void getDataForFailure(View view) {
-        presenter.getData("failure");
+        presenter.showData("failure");
     }
 
     // button 点击事件调用方法
     public void getDataForError(View view) {
-        presenter.getData("error");
+        presenter.showData("error");
     }
 
 
