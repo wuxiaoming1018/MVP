@@ -9,70 +9,50 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.ming.mvp.R;
+import com.android.ming.mvp.base.view.BaseActivity;
 import com.android.ming.mvp.interfaces.MvpView;
 import com.android.ming.mvp.presenter.MvpPresenter;
 
-public class MainActivity extends AppCompatActivity implements MvpView{
+public class MainActivity extends BaseActivity implements MvpView {
 
     private ProgressDialog progressDialog;
     private TextView text;
     private MvpPresenter presenter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        text = (TextView)findViewById(R.id.text);
-        //初始化进度条
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("正在加载数据");
-        //初始化Presenter
-        presenter = new MvpPresenter(this);
+    protected void initView() {
+        text = (TextView) findViewById(R.id.text);
+        presenter = new MvpPresenter();
+        presenter.attachView(this);
     }
 
-    public void getData(View view){
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
+    }
+
+    public void getData(View view) {
         presenter.getData("normal");
     }
 
-    public void getDataForFailure(View view){
+    public void getDataForFailure(View view) {
         presenter.getData("failure");
     }
 
     // button 点击事件调用方法
-    public void getDataForError(View view){
+    public void getDataForError(View view) {
         presenter.getData("error");
     }
 
 
     @Override
-    public void showLoading() {
-        if (!progressDialog.isShowing()) {
-            progressDialog.show();
-        }
-    }
-
-    @Override
-    public void hideLoading() {
-        if (progressDialog.isShowing()) {
-            progressDialog.dismiss();
-        }
-    }
-
-    @Override
     public void showData(String data) {
         text.setText(data);
-    }
-
-    @Override
-    public void showFailureMessage(String msg) {
-        text.setText(msg);
-        Toast.makeText(MainActivity.this, "错误信息Error:"+msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showErrorMessage() {
-        Toast.makeText(MainActivity.this, "网络请求数据出现异常", Toast.LENGTH_SHORT).show();
-        text.setText("网络请求数据出现异常");
     }
 }

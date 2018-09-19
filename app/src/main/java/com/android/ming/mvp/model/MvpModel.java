@@ -13,7 +13,7 @@ public class MvpModel {
      * @param param    请求参数
      * @param callback 数据回调接口
      */
-    public void getNetData(final String param, final MvpCallback callback) {
+    public static void getNetData(final String param, final MvpCallback callback) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

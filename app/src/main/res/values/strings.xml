@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVP</string>
+    <string name="api_error_msg">服务器请求失败</string>
 </resources>
