@@ -1,6 +1,6 @@
 package com.android.ming.mvp.presenter;
 
-import com.android.ming.mvp.base.interfaces.presenter.BasePresenter;
+import com.android.ming.mvp.base.presenter.BasePresenter;
 import com.android.ming.mvp.interfaces.MvpCallback;
 import com.android.ming.mvp.interfaces.MvpView;
 import com.android.ming.mvp.model.MvpModel;

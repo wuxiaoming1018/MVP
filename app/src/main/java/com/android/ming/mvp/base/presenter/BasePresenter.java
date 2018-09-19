@@ -1,4 +1,4 @@
-package com.android.ming.mvp.base.interfaces.presenter;
+package com.android.ming.mvp.base.presenter;
 
 import com.android.ming.mvp.base.interfaces.BaseView;
 
