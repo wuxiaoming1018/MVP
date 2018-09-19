@@ -2,6 +2,7 @@ package com.android.ming.mvp.presenter;
 
 import com.android.ming.mvp.base.interfaces.CallBack;
 import com.android.ming.mvp.base.model.Token;
+import com.android.ming.mvp.base.model.UserDataModel;
 import com.android.ming.mvp.base.presenter.BasePresenter;
 import com.android.ming.mvp.interfaces.MvpCallback;
 import com.android.ming.mvp.interfaces.MvpView;
@@ -57,7 +58,7 @@ public class MvpPresenter extends BasePresenter<MvpView> {
             return;
         }
         getView().showLoading();
-        DataModel.request(Token.API_USER_DATA)
+        DataModel.request(UserDataModel.class)
                 .params(params)
                 .execute(new CallBack<String>(){
 
