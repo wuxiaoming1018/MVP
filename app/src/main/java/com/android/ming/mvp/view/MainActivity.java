@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity implements MvpView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.detachView();
+        getPresenter().detachView();
     }
 
     public void getData(View view) {
