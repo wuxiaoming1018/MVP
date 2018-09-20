@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.android.ming.mvp.R;
 import com.android.ming.mvp.base.interfaces.BaseView;
+import com.android.ming.mvp.base.presenter.BasePresenter;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
@@ -18,16 +19,24 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayout());
+        setContentView(getResourcesId());
         initView();
+        initPresenter();
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setCancelable(false);
         mContext = this;
+        if(getPresenter()!=null){
+            getPresenter().attachView(this);
+        }
     }
+
+    protected abstract BasePresenter getPresenter();
+
+    protected abstract void initPresenter();
 
     protected abstract void initView();
 
-    protected abstract int getLayout();
+    protected abstract int getResourcesId();
 
     @Override
     public void showLoading() {

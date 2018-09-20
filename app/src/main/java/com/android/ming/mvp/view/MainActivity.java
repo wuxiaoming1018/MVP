@@ -5,25 +5,33 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.ming.mvp.R;
+import com.android.ming.mvp.base.presenter.BasePresenter;
 import com.android.ming.mvp.base.view.BaseActivity;
 import com.android.ming.mvp.interfaces.MvpView;
 import com.android.ming.mvp.presenter.MvpPresenter;
 
 public class MainActivity extends BaseActivity implements MvpView {
 
-    private ProgressDialog progressDialog;
     private TextView text;
     private MvpPresenter presenter;
 
     @Override
-    protected void initView() {
-        text = (TextView) findViewById(R.id.text);
-        presenter = new MvpPresenter();
-        presenter.attachView(this);
+    protected BasePresenter getPresenter() {
+        return presenter;
     }
 
     @Override
-    protected int getLayout() {
+    protected void initPresenter() {
+        presenter = new MvpPresenter();
+    }
+
+    @Override
+    protected void initView() {
+        text = (TextView) findViewById(R.id.text);
+    }
+
+    @Override
+    protected int getResourcesId() {
         return R.layout.activity_main;
     }
 
