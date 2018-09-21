@@ -24,7 +24,9 @@ public class DataModel {
         // 判断class对象是不是BaseModel的实例
         try {
             //利用反射机制获得对应Model对象的引用
-            model = (BaseModel) clazz.newInstance();
+            if (clazz == BaseModel.class) {
+                model = (BaseModel) clazz.newInstance();
+            }
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
