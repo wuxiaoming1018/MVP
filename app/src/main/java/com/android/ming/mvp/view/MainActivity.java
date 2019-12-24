@@ -1,6 +1,5 @@
 package com.android.ming.mvp.view;
 
-import android.app.ProgressDialog;
 import android.view.View;
 import android.widget.TextView;
 

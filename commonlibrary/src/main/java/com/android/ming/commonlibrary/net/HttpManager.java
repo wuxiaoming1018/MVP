@@ -14,7 +14,7 @@ public class HttpManager {
     private OkHttpClient mClient;
     private boolean debug = true;
 
-    public HttpManager() {
+    private HttpManager() {
     }
 
     public static HttpManager getInstance() {
